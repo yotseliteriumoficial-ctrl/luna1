@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>luna ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#ff6b9d,#ff8fab,#ffb3c6,#ffc2d1);
+    background-size:400% 400%;
+    animation:fondo 12s ease infinite;
+    overflow-x:hidden;
+    padding:20px;
+}
+
+@keyframes fondo{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.corazon{
+    position:fixed;
+    color:rgba(255,255,255,0.5);
+    animation:flotar linear infinite;
+    pointer-events:none;
+}
+
+@keyframes flotar{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    to{
+        transform:translateY(-120px);
+        opacity:1;
+    }
+}
+
+.tarjeta{
+    width:100%;
+    max-width:900px;
+    text-align:center;
+    padding:40px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+    color:white;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.sub{
+    font-size:1.2rem;
+    margin-bottom:25px;
+}
+
+#contador{
+    font-size:2rem;
+    font-weight:bold;
+    margin:25px 0;
+    line-height:1.6;
+}
+
+.carta{
+    margin:35px 0;
+    padding:25px;
+    background:rgba(255,255,255,0.18);
+    border-radius:20px;
+    text-align:left;
+    line-height:1.9;
+    font-size:1.1rem;
+}
+
+.carta h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.frase{
+    margin-top:25px;
+    font-size:1.3rem;
+    font-style:italic;
+}
+
+#fecha{
+    margin-top:20px;
+    opacity:0.9;
+}
+
+.latido{
+    display:inline-block;
+    animation:latido 1s infinite;
+}
+
+@keyframes latido{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+}
+
+@media (max-width:700px){
+    h1{
+        font-size:2rem;
+    }
+
+    #contador{
+        font-size:1.4rem;
+    }
+
+    .carta{
+        font-size:1rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="tarjeta">
+
+    <h1>❤️ luna ❤️</h1>
+
+    <p class="sub">
+        Tiempo transcurrido desde el 29 de noviembre de 2025
+    </p>
+
+    <div id="contador">Calculando...</div>
+
+    <div class="carta">
+        <h2>💌 Para Ti Mi lunita💌</h2>
+
+        <p>
+            Hoy quiero recordarte lo importante que eres para mí.
+            Gracias por cada momento compartido, por cada sonrisa,
+            por cada conversación y por cada recuerdo que hemos creado juntos.
+        </p>
+
+        <br>
+
+        <p>
+            Desde aquel 29 de noviembre de 2025 comenzó una historia
+            que sigue creciendo día tras día. Cada segundo a tu lado
+            se convierte en un recuerdo especial que guardaré siempre.
+        </p>
+
+        <br>
+
+        <p>
+            Te quiero mucho y espero que sigamos compartiendo momentos
+            increíbles, construyendo nuevos sueños y disfrutando juntos
+            cada etapa de esta hermosa aventura. ❤️
+        </p>
+    </div>
+
+    <div class="frase">
+        <span class="latido">💖</span>
+        Cada segundo contigo vale una eternidad.
+        <span class="latido">💖</span>
+    </div>
+
+    <div id="fecha"></div>
+
+</div>
+
+<script>
+const fechaInicio = new Date("2025-11-29T00:00:00");
+
+function actualizarContador() {
+    const ahora = new Date();
+
+    let diferencia = ahora - fechaInicio;
+
+    if (diferencia < 0) {
+        document.getElementById("contador").innerHTML =
+        "❤️ Nuestra historia aún no comienza ❤️";
+    } else {
+
+        const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+        diferencia %= (1000 * 60 * 60 * 24);
+
+        const horas = Math.floor(diferencia / (1000 * 60 * 60));
+        diferencia %= (1000 * 60 * 60);
+
+        const minutos = Math.floor(diferencia / (1000 * 60));
+        diferencia %= (1000 * 60);
+
+        const segundos = Math.floor(diferencia / 1000);
+
+        document.getElementById("contador").innerHTML =
+        ` ${dias} días<br>
+          ${horas} horas<br>
+          ${minutos} minutos<br>
+          ${segundos} segundos`;
+    }
+
+    document.getElementById("fecha").innerHTML =
+    "🕒 " + ahora.toLocaleString("es-MX");
+}
+
+setInterval(actualizarContador, 1000);
+actualizarContador();
+
+function crearCorazon() {
+    const corazon = document.createElement("div");
+
+    corazon.classList.add("corazon");
+    corazon.innerHTML = "❤";
+
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.fontSize = (Math.random() * 25 + 15) + "px";
+    corazon.style.animationDuration = (Math.random() * 6 + 6) + "s";
+
+    document.body.appendChild(corazon);
+
+    setTimeout(() => {
+        corazon.remove();
+    }, 12000);
+}
+
+setInterval(crearCorazon, 300);
+</script>
+
+</body>
+</html>
